@@ -19,7 +19,4 @@ if [ "$1" == "install" ]
     helm init --client-only --skip-re
     helm repo rm stable
     helm repo add stable https://charts.helm.sh/stable
-
-
-
 fi
