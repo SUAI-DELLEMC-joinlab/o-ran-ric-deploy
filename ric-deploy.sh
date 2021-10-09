@@ -1,5 +1,6 @@
 #!/bin/bash
 if [ "$1" == "install" ]
+    then
     apt-get upadate
     apt-get upgrade -y
 	apt-get install git -y
@@ -9,7 +10,7 @@ if [ "$1" == "install" ]
     
     sed -i 's/"repository: kong-docker-kubernetes-ingress-controller.bintray.io/kong-ingress-controller"/""image: kong/kubernetes-ingress-controller:0.7.0""/g' /ric-dep/helm/infrastructure/subcharts/kong/values.yaml
 
-    
+
     ric-dep/helm/infrastructure/subcharts/kong/values.yaml
     cd tools/k8s/bin
     ./gen-cloud-init.sh
