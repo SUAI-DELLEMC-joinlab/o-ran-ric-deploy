@@ -19,6 +19,8 @@ if [ "$1" == "install" ]
     tmp2="repository: kong/kubernetes-ingress-controller"
     
     sed -i "s#${tmp1}#${tmp2}#g" ../../../ric-dep/helm/infrastructure/subcharts/kong/values.yaml
+    sed -i "s#${tmp1}#${tmp2}#g" ../../../ric-aux/helm/infrastructure/subcharts/kong/values.yaml
+
 
     ./k8s-1node-cloud-init-k_1_16-h_2_17-d_cur.sh 
 
