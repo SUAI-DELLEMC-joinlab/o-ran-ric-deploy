@@ -31,11 +31,10 @@ if [ "$1" == "deploy" ]
     helm repo rm stable
     helm repo add stable https://charts.helm.sh/stable
 
+    cd dep
 
-    cd dep/bin
+    ./bin/deploy-ric-platform -f /bin/RECIPE_EXAMPLE/PLATFORM/example_recipe.yaml
 
-    cd dep/bin
-    ./deploy-ric-platform -f ../RECIPE_EXAMPLE/PLATFORM/example_recipe.yaml
     kubectl get pods -n ricplt
 
 
