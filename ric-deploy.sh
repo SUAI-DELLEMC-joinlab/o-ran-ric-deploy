@@ -33,7 +33,7 @@ if [ "$1" == "deploy" ]
 
     cd dep
 
-    ./bin/deploy-ric-platform -f /bin/RECIPE_EXAMPLE/PLATFORM/example_recipe.yaml
+    ./bin/deploy-ric-platform -f ../RECIPE_EXAMPLE/PLATFORM/example_recipe.yaml
 
     kubectl get pods -n ricplt
 
