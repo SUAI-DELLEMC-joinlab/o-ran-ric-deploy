@@ -13,7 +13,7 @@ sudo ./ric-deploy.sh install
 
 [Upon completion of this script, the VM will be rebooted]
 
-sudo ./o-ran-ric/ric-deploy.sh deploy
+cd o-ran-ric && sudo ./ric-deploy.sh deploy
 
 ---
 
