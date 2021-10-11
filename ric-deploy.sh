@@ -21,6 +21,16 @@ if [ "$1" == "install" ]
     sed -i "s#${tmp1}#${tmp2}#g" ../../../ric-dep/helm/infrastructure/subcharts/kong/values.yaml
     sed -i "s#${tmp1}#${tmp2}#g" ../../../ric-aux/helm/infrastructure/subcharts/kong/values.yaml
 
+    oldRepositoryOfTiller="name: kubernetes-helm/tiller"
+    newRepositoryOfTiller="name: helm/tiller"
+    
+    sed -i "s#${oldRepositoryOfTiller}#${newRepositoryOfTiller}#g" ../../../dep/ric-dep/helm/infrastructure/values.yaml
+    
+    oldTillerVesion="tag: v2.12.3"
+    tillerVesion="2.17.0"
+    newTillerVesion="tag: ${tillerVesion}"
+    
+    sed -i "s#${tmp1}#${newTillerVesion}#g" ../../../ric-aux/helm/infrastructure/subcharts/kong/values.yaml
 
     ./k8s-1node-cloud-init-k_1_16-h_2_17-d_cur.sh 
 
