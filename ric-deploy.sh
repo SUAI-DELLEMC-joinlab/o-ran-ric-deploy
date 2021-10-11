@@ -32,7 +32,16 @@ if [ "$1" == "deploy" ]
     helm init --client-only
     helm repo rm stable
     helm repo add stable https://charts.helm.sh/stable
+    
+    sleep 10
+    
+    kubectl create ns ricinfra
+    helm install stable/nfs-server-provisioner --namespace ricinfra --name nfs-release-1
+    kubectl patch storageclass nfs -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+    apt install -y nfs-common
 
+    sleep 10
+    
     cd dep
 
     ./bin/deploy-ric-platform -f ~/o-ran-ric/dep/RECIPE_EXAMPLE/PLATFORM/example_recipe.yaml
