@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ "$1" == "install" ]
     then
-    apt-get upadate
+    apt-get update
     apt-get upgrade -y
 	apt-get install git -y
     git clone http://gerrit.o-ran-sc.org/r/it/dep
@@ -29,9 +29,12 @@ if [ "$1" == "install" ]
     oldTillerVesion="tag: v2.12.3"
     tillerVesion="2.17.0"
     newTillerVesion="tag: ${tillerVesion}"
-    
     sed -i "s#${oldTillerVesion}#${newTillerVesion}#g" ../../../ric-dep/helm/infrastructure/values.yaml
-
+    oldRep="gcr.io"
+    newRep="ghcr.io"
+    sed -i "s#${oldRep}#${newRep}#g" ../../../ric-dep/helm/infrastructure/values.yaml
+    
+    
     ./k8s-1node-cloud-init-k_1_16-h_2_17-d_cur.sh 
 
 fi
