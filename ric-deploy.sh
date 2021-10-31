@@ -19,7 +19,7 @@ if [ "$1" == "install" ]
     tmp2="repository: kong/kubernetes-ingress-controller"
     
     sed -i "s#${tmp1}#${tmp2}#g" ../../../ric-dep/helm/infrastructure/subcharts/kong/values.yaml
-    sed -i "s#${tmp1}#${tmp2}#g" ../../../ric-aux/helm/infrastructure/subcharts/kong/values.yaml
+
 
     oldRepositoryOfTiller="name: kubernetes-helm/tiller"
     newRepositoryOfTiller="name: helm/tiller"
@@ -27,14 +27,18 @@ if [ "$1" == "install" ]
     sed -i "s#${oldRepositoryOfTiller}#${newRepositoryOfTiller}#g" ../../../ric-dep/helm/infrastructure/values.yaml
     
     oldTillerVesion="tag: v2.12.3"
-    tillerVesion="2.17.0"
+    tillerVesion="v2.17.0"
     newTillerVesion="tag: ${tillerVesion}"
+    
     sed -i "s#${oldTillerVesion}#${newTillerVesion}#g" ../../../ric-dep/helm/infrastructure/values.yaml
+
+
     oldRep="gcr.io"
     newRep="ghcr.io"
+
+    
     sed -i "s#${oldRep}#${newRep}#g" ../../../ric-dep/helm/infrastructure/values.yaml
-    
-    
+
     ./k8s-1node-cloud-init-k_1_16-h_2_17-d_cur.sh 
 
 fi
@@ -63,5 +67,3 @@ if [ "$1" == "deploy" ]
 
 
 fi
-
-
